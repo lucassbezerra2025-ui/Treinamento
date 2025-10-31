@@ -26,7 +26,7 @@ int main()
     int codigo;
     float v1, v2, resultado;
     printf("== Cálculo da Área ==\n");
-    printf("[1] Círculo\n[2] Quadrado\n[3] Triângulo\n");
+    printf("[1] Círculo\n[2] Quadrado\n[3] Retângulo\n");
     printf("Escolha a opção desejada\n");
     scanf("%d", &codigo);
    if(codigo == 1){
