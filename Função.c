@@ -1,3 +1,5 @@
+//Objetivo: 1. Elabore um programa com uma função que calcule a área de uma figura geométrica.
+
 #include <stdio.h>
 #include <locale.h>
 #include <math.h>
@@ -47,4 +49,5 @@ int main()
    }
    printf("O valor da área calculada é: %.2f", resultado);
     return 0;
+
 }
