@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <locale.h>
-#include <stdlib.h>
 float CalcularDesconto(float vb){
     float vd = 0;
     if(vb <= 100){
