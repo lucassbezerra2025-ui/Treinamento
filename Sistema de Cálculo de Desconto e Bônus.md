@@ -1,62 +1,84 @@
-#include <stdio.h>
-#include <locale.h>
-#include <stdlib.h>
-float CalcularDesconto(float vb){
-    float vd = 0;
-    if(vb <= 100){
-        vd=(vb*(5.0/100));
-    } else if(vb <= 500){
-        vd=(vb*(10.0/100));
-    } else if(vb > 500){
-        vd=(vb*(15.0/100));
-    } else {
-        printf("Número invalido");
-    }
-    return vd;
-}
-float CalcularBonus(float vlc, char codigo){
-    if(codigo == 'V' || codigo == 'v'){
-        vlc = (vlc*(3.0/100));
-    } else if(codigo == 'P' || codigo == 'p'){
-        vlc = (vlc*(5.0/100));
-    } else {
-        vlc = -1;
-    }
-    return vlc;
-}
-int main() {
-    setlocale(LC_ALL, "Portuguese");
-    float valorbruto, valorliquido;
-    float desconto,bonus;
-    char cod;
-    printf("\t========================\n");
-        printf("\t》Digite o valor gasto《\n");
-        printf("\t========================\n");
-        printf("=> R$ ");
-        scanf("%f", &valorbruto);
-            printf("===== Digite a forma de pagamento =====\n[V] Pagamento à Vista\n[P] Pagamento à Prazo\nOpção: ");
-            scanf(" %c", &cod);
-            desconto = CalcularDesconto(valorbruto);
-            valorliquido = valorbruto - desconto;
-            bonus = CalcularBonus(valorliquido, cod);
-    if(cod == 'V' || cod == 'v'){
-        printf("\t========================\n");
-        printf("\t 《    NOTA FISCAL    》\n");
-        printf("\t========================\n");
-        printf("\t|=> Valor Bruto: R$ %.2f\n", valorbruto);
-        printf("\t|=> Desconto: R$ %.2f\n", desconto);
-        printf("\t|=> Bônus: R$ %.2f\n", bonus);
-        printf("\t|=> Valor Líquido: R$ %.2f ",valorliquido + bonus);
-    } else if(cod == 'P' || cod == 'p'){
-        printf("\t========================\n");
-        printf("\t 《    NOTA FISCAL    》\n");
-        printf("\t========================\n");
-        printf("\t|=> Valor Bruto: R$ %.2f\n", valorbruto);
-        printf("\t|=> Desconto: R$ %.2f \n", desconto);
-        printf("\t|=> Taxa: R$ %.2f\n", bonus);
-        printf("\t|=> Valor Líquido: R$ %.2f",valorliquido + bonus);
-    } else {
-       printf("Código Inválido!");
-    }
-    return 0;
-}
+
+---
+
+💰 Sistema de Cálculo de Desconto e Bônus
+
+Este programa em linguagem C calcula o desconto aplicado de acordo com o valor bruto gasto e, posteriormente, aplica um bônus ou taxa dependendo da forma de pagamento escolhida pelo usuário. Ao final, é exibida uma Nota Fiscal com todos os valores calculados.
+
+
+---
+
+✅ Funcionalidades
+
+Função	Descrição
+
+CalcularDesconto(float vb)	Calcula o valor do desconto com base no valor bruto gasto.
+CalcularBonus(float vlc, char codigo)	Calcula o bônus (para pagamento à vista) ou taxa (para pagamento a prazo).
+Exibe Nota Fiscal	Mostra valor bruto, desconto, bônus/taxa e valor final.
+
+
+
+---
+
+🧮 Regras do Desconto
+
+Valor Bruto (R$)	Desconto
+
+Até R$ 100	5%
+De R$ 100,01 a R$ 500	10%
+Acima de R$ 500	15%
+
+
+
+---
+
+💳 Formas de Pagamento
+
+Código	Tipo de Pagamento	Percentual aplicado
+
+V ou v	À Vista	Bônus de 3%
+P ou p	A Prazo	Taxa de 5%
+
+
+
+---
+
+📝 Exemplo de Saída (Nota Fiscal)
+
+========================
+ 《    NOTA FISCAL    》
+========================
+|=> Valor Bruto: R$ 250.00
+|=> Desconto: R$ 25.00
+|=> Bônus: R$ 6.75
+|=> Valor Líquido: R$ 231.75
+
+
+---
+
+▶️ Como Executar
+
+1. Salve o código em um arquivo, por exemplo:
+
+programa.c
+
+
+2. Compile usando GCC:
+
+gcc programa.c -o programa
+
+
+3. Execute:
+
+./programa
+
+
+
+---
+
+👨‍💻 Autor
+
+Desenvolvido para fins de estudo e prática de lógica de programação e funções em C.
+
+
+---
