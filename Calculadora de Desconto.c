@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <locale.h>
+#include <stdlib.h>
 float CalcularDesconto(float vb){
     float vd = 0;
     if(vb <= 100){
-        vd=vb-(vb*(5.0/100));
+        vd=(vb*(5.0/100));
     } else if(vb <= 500){
-        vd=vb-(vb*(10.0/100));
+        vd=(vb*(10.0/100));
     } else if(vb > 500){
-        vd=vb-(vb*(15.0/100));
+        vd=(vb*(15.0/100));
     } else {
         printf("Número invalido");
     }
@@ -15,9 +16,9 @@ float CalcularDesconto(float vb){
 }
 float CalcularBonus(float vlc, char codigo){
     if(codigo == 'V' || codigo == 'v'){
-        vlc = vlc-(vlc*(3.0/100));
+        vlc = (vlc*(3.0/100));
     } else if(codigo == 'P' || codigo == 'p'){
-        vlc = vlc+(vlc*(5.0/100));
+        vlc = (vlc*(5.0/100));
     } else {
         vlc = -1;
     }
@@ -25,20 +26,35 @@ float CalcularBonus(float vlc, char codigo){
 }
 int main() {
     setlocale(LC_ALL, "Portuguese");
-    float vb,vlc;
-    int resultado;
+    float valorbruto, valorliquido;
+    float desconto,bonus;
     char cod;
-    printf("===== Digite o valor bruto =====\n- Valor Bruto: ");
-        scanf("%f", &vb);
+    printf("\t========================\n");
+        printf("\t》Digite o valor gasto《\n");
+        printf("\t========================\n");
+        printf("=> R$ ");
+        scanf("%f", &valorbruto);
             printf("===== Digite a forma de pagamento =====\n[V] Pagamento à Vista\n[P] Pagamento à Prazo\nOpção: ");
             scanf(" %c", &cod);
-            vb = CalcularDesconto(vb);
-                printf("- Valor bruto com desconto é: %.2f \n", vb);
-        vlc = CalcularBonus(vb, cod);
+            desconto = CalcularDesconto(valorbruto);
+            valorliquido = valorbruto - desconto;
+            bonus = CalcularBonus(valorliquido, cod);
     if(cod == 'V' || cod == 'v'){
-        printf("- Bônus: %.2f", vlc);
+        printf("\t========================\n");
+        printf("\t 《    NOTA FISCAL    》\n");
+        printf("\t========================\n");
+        printf("\t|=> Valor Bruto: R$ %.2f\n", valorbruto);
+        printf("\t|=> Desconto: R$ %.2f\n", desconto);
+        printf("\t|=> Bônus: R$ %.2f\n", bonus);
+        printf("\t|=> Valor Líquido: R$ %.2f ",valorliquido + bonus);
     } else if(cod == 'P' || cod == 'p'){
-        printf("- acréscimo de taxa: %.2f", vlc);
+        printf("\t========================\n");
+        printf("\t 《    NOTA FISCAL    》\n");
+        printf("\t========================\n");
+        printf("\t|=> Valor Bruto: R$ %.2f\n", valorbruto);
+        printf("\t|=> Desconto: R$ %.2f \n", desconto);
+        printf("\t|=> Taxa: R$ %.2f\n", bonus);
+        printf("\t|=> Valor Líquido: R$ %.2f",valorliquido + bonus);
     } else {
        printf("Código Inválido!");
     }
